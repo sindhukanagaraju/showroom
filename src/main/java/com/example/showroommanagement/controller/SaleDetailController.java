@@ -30,7 +30,7 @@ public class SaleDetailController {
 
     }
 
-    @GetMapping("/retrieve")
+    @GetMapping("/sale/retrieve")
     public ResponseDTO retrieveSales() {
         return new ResponseDTO(HttpStatus.OK.value(), Constant.RETRIEVE, this.saleDetailService.retrieveSales());
     }
