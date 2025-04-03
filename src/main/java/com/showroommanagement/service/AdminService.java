@@ -11,6 +11,7 @@ import java.util.List;
 
 @Service
 public class AdminService {
+
     private final AdminRepository adminRepository;
 
     public AdminService(final AdminRepository adminRepository) {
@@ -37,25 +38,12 @@ public class AdminService {
         if (admin.getName() != null) {
             existingAdmin.setName(admin.getName());
         }
-        if (admin.getUser() != null) {
-            existingAdmin.setUser(admin.getUser());
-        }
         return this.adminRepository.save(existingAdmin);
     }
 
-    //    public String removeAdminById(final Integer id) {
-//        if (this.adminRepository.existsById(id)) {
-//            this.adminRepository.deleteById(id);
-//            return Constant.DELETE;
-//        } else {
-//            throw new BadRequestServiceAlertException(Constant.ID_DOES_NOT_EXIST);
-//        }
-//    }
     public Admin removeAdminById(final Integer id) {
-        Admin admin = this.adminRepository.findById(id).orElseThrow(() -> new BadRequestServiceAlertException(Constant.ID_DOES_NOT_EXIST));
+        final Admin admin = this.adminRepository.findById(id).orElseThrow(() -> new BadRequestServiceAlertException(Constant.ID_DOES_NOT_EXIST));
         this.adminRepository.deleteById(id);
         return admin;
     }
-
-
 }

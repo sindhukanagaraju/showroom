@@ -25,7 +25,6 @@ public class DepartmentService {
 
     public Department retrieveDepartmentById(final Integer id) {
         return this.departmentRepository.findById(id).orElseThrow(() -> new BadRequestServiceAlertException(Constant.ID_DOES_NOT_EXIST));
-
     }
 
     public List<Department> retrieveDepartment() {
@@ -49,7 +48,7 @@ public class DepartmentService {
     }
 
     public Department removeDepartmentById(final Integer id) {
-        Department branch = this.departmentRepository.findById(id).orElseThrow(() -> new BadRequestServiceAlertException(Constant.ID_DOES_NOT_EXIST));
+        final Department branch = this.departmentRepository.findById(id).orElseThrow(() -> new BadRequestServiceAlertException(Constant.ID_DOES_NOT_EXIST));
         this.departmentRepository.deleteById(id);
         return branch;
     }

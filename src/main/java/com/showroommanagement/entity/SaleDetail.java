@@ -1,17 +1,11 @@
 package com.showroommanagement.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.Date;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Setter
-@Getter
+@Data
 @Entity
 @Table(name = "Sale_detail")
 public class SaleDetail {
@@ -25,11 +19,8 @@ public class SaleDetail {
     private Date salesDate;
 
     @ManyToOne()
-    @JoinColumn(name = "product_id")
     private Product product;
 
     @ManyToOne()
-    @JoinColumn(name = "customer_id")
     private Customer customer;
-
 }

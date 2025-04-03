@@ -24,7 +24,6 @@ public class ProductService {
 
     public Product retrieveProductById(final Integer id) {
         return this.productRepository.findById(id).orElseThrow(() -> new BadRequestServiceAlertException(Constant.ID_DOES_NOT_EXIST));
-
     }
 
     public List<Product> retrieveProduct() {
@@ -55,12 +54,11 @@ public class ProductService {
         if (product.getStock() != null) {
             existingProduct.setStock(product.getStock());
         }
-
         return this.productRepository.save(existingProduct);
     }
 
     public Product removeProductById(final Integer id) {
-        Product product = this.productRepository.findById(id).orElseThrow(() -> new BadRequestServiceAlertException(Constant.ID_DOES_NOT_EXIST));
+        final Product product = this.productRepository.findById(id).orElseThrow(() -> new BadRequestServiceAlertException(Constant.ID_DOES_NOT_EXIST));
         this.productRepository.deleteById(id);
         return product;
     }

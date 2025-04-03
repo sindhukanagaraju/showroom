@@ -54,14 +54,11 @@ public class EmployeeService {
         if (employee.getBranch() != null) {
             existingEmployee.setBranch(employee.getBranch());
         }
-        if (employee.getUser() != null) {
-            existingEmployee.setUser(employee.getUser());
-        }
         return this.employeeRepository.save(existingEmployee);
     }
 
     public Employee removeEmployeeById(final Integer id) {
-        Employee employee = this.employeeRepository.findById(id).orElseThrow(() -> new BadRequestServiceAlertException(Constant.ID_DOES_NOT_EXIST));
+        final Employee employee = this.employeeRepository.findById(id).orElseThrow(() -> new BadRequestServiceAlertException(Constant.ID_DOES_NOT_EXIST));
         this.employeeRepository.deleteById(id);
         return employee;
     }
@@ -76,7 +73,6 @@ public class EmployeeService {
             employeeDetailDTO.setDepartmentName(employee.getDepartment().getName());
             employeeDetailDTO.setShowroomName(employee.getDepartment().getShowroom().getName());
             employeeDetailDTO.setBranchName(employee.getBranch().getBranch());
-            employeeDetailDTO.setUserEmail(employee.getUser().getEmail());
             employeeDetailDTOS.add(employeeDetailDTO);
         }
         return employeeDetailDTOS;
@@ -85,5 +81,4 @@ public class EmployeeService {
     public List<String> countOfName() {
         return this.employeeRepository.countOfName();
     }
-
 }

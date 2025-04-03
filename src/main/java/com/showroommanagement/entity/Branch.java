@@ -1,15 +1,9 @@
 package com.showroommanagement.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Setter
-@Getter
+@Data
 @Entity
 @Table(name = "branch")
 public class Branch {
@@ -23,6 +17,5 @@ public class Branch {
     private String branch;
 
     @ManyToOne()
-    @JoinColumn(name = "showroom_id")
     private Showroom showroom;
 }

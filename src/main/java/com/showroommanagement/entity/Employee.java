@@ -1,16 +1,10 @@
 package com.showroommanagement.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Setter
-@Getter
 @Entity
+@Data
 @Table(name = "Employee")
 public class Employee {
     @Id
@@ -28,16 +22,9 @@ public class Employee {
     @Column(name = "Address")
     private String address;
 
-    @ManyToOne()
-    @JoinColumn(name = "department_id")
+    @ManyToOne
     private Department department;
 
-    @ManyToOne()
-    @JoinColumn(name = "branch_id")
+    @ManyToOne
     private Branch branch;
-
-    @ManyToOne()
-    @JoinColumn(name = "user")
-    private User user;
-
 }

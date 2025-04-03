@@ -46,7 +46,7 @@ public class BrandService {
     }
 
     public Brand removeBrandById(final Integer id) {
-        Brand brand = this.brandRepository.findById(id).orElseThrow(() -> new BadRequestServiceAlertException(Constant.ID_DOES_NOT_EXIST));
+        final Brand brand = this.brandRepository.findById(id).orElseThrow(() -> new BadRequestServiceAlertException(Constant.ID_DOES_NOT_EXIST));
         this.brandRepository.deleteById(id);
         return brand;
     }

@@ -1,15 +1,9 @@
 package com.showroommanagement.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Setter
-@Getter
+@Data
 @Entity
 @Table(name = "showroom")
 public class Showroom {
@@ -27,8 +21,4 @@ public class Showroom {
 
     @Column(name = "contact_number")
     private String contactNumber;
-
-    @ManyToOne
-    @JoinColumn(name = "admin_id")
-    private Admin admin;
 }

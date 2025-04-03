@@ -32,7 +32,7 @@ public class ShowroomService {
         return this.showroomRepository.findAll();
     }
 
-    public Showroom patchById(final Showroom showroom, final Integer id){
+    public Showroom patchById(final Showroom showroom, final Integer id) {
         final Showroom existingShowroom = this.showroomRepository.findById(id).orElseThrow(() -> new BadRequestServiceAlertException(Constant.ID_DOES_NOT_EXIST));
         if (showroom.getName() != null) {
             existingShowroom.setName(showroom.getName());
@@ -52,18 +52,11 @@ public class ShowroomService {
         if (showroom.getAddress() != null) {
             existingShowroom.setAddress(showroom.getAddress());
         }
-        if (showroom.getContactNumber() != null) {
-            existingShowroom.setContactNumber(showroom.getContactNumber());
-        }
-        if (showroom.getAdmin() != null) {
-            existingShowroom.setAdmin(showroom.getAdmin());
-        }
-
         return this.showroomRepository.save(existingShowroom);
     }
 
     public Showroom removeShowroomById(final Integer id) {
-        Showroom showroom = this.showroomRepository.findById(id).orElseThrow(() -> new BadRequestServiceAlertException(Constant.ID_DOES_NOT_EXIST));
+        final Showroom showroom = this.showroomRepository.findById(id).orElseThrow(() -> new BadRequestServiceAlertException(Constant.ID_DOES_NOT_EXIST));
         this.showroomRepository.deleteById(id);
         return showroom;
     }

@@ -1,15 +1,9 @@
 package com.showroommanagement.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Setter
-@Getter
+@Data
 @Entity
 @Table(name = "product")
 public class Product {
@@ -31,13 +25,9 @@ public class Product {
     @Column(name = "stock")
     private Integer stock;
 
-    @ManyToOne()
-    @JoinColumn(name = "employee_id")
+    @ManyToOne
     private Employee employee;
 
-    @ManyToOne()
-    @JoinColumn(name = "brand_id")
+    @ManyToOne
     private Brand brand;
-
-
 }

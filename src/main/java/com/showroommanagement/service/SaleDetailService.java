@@ -1,16 +1,15 @@
 package com.showroommanagement.service;
 
+<<<<<<< HEAD
 import com.showroommanagement.dto.PaginationDTO;
+=======
+>>>>>>> 1bb0e5d (first commit)
 import com.showroommanagement.dto.SaleDetailDTO;
 import com.showroommanagement.entity.SaleDetail;
 import com.showroommanagement.exception.BadRequestServiceAlertException;
 import com.showroommanagement.repository.SaleDetailRepository;
 import com.showroommanagement.util.Constant;
 import jakarta.transaction.Transactional;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -56,7 +55,7 @@ public class SaleDetailService {
     }
 
     public SaleDetail removeSaleDetailById(final Integer id) {
-        SaleDetail saleDetail = this.saleDetailRepository.findById(id).orElseThrow(() -> new BadRequestServiceAlertException(Constant.ID_DOES_NOT_EXIST));
+        final SaleDetail saleDetail = this.saleDetailRepository.findById(id).orElseThrow(() -> new BadRequestServiceAlertException(Constant.ID_DOES_NOT_EXIST));
         this.saleDetailRepository.deleteById(id);
         return saleDetail;
     }
@@ -79,42 +78,5 @@ public class SaleDetailService {
             saleDetailDTOS.add(saleDetailDTO);
         }
         return saleDetailDTOS;
-    }
-
-    public PaginationDTO pagination(final int pageIndex, final int pageSize) {
-        if (pageIndex <= 0 || pageSize <= 0) {
-            throw new BadRequestServiceAlertException("Page index and size must be greater than zero");
-        }
-        Pageable pageable = PageRequest.of(pageIndex - 1, pageSize);
-         Page<SaleDetail> page = this.saleDetailRepository.findAll(pageable);
-         return new PaginationDTO(page.getTotalPages(),page.getTotalElements(),page.getSize(),page.getContent());
-    }
-
-    public Page<SaleDetail> getPaginatedData(final int pageIndex, final int pageSize, final String sorting, final boolean direction) {
-        if (pageIndex <= 0 || pageSize <= 0) {
-            throw new BadRequestServiceAlertException("Page index and size must be greater than zero");
-        }
-        Pageable pageable = PageRequest.of(pageIndex - 1, pageSize, Sort.by(direction ? Sort.Direction.ASC : Sort.Direction.DESC, sorting));
-        return this.saleDetailRepository.findAll(pageable);
-    }
-
-    public List<SaleDetail> findByModel(String keyword) {
-        List<SaleDetail> saleDetails = this.saleDetailRepository.findByModel(keyword);
-        if (saleDetails.isEmpty()) {
-            throw new BadRequestServiceAlertException("no data found");
-        }
-        return saleDetails;
-    }
-
-    public Page<SaleDetail> searchByColour(int pageIndex, int pageSize, String keyword) {
-        if (pageIndex <= 0 || pageSize <= 0) {
-            throw new BadRequestServiceAlertException("Page index and size must be greater than zero");
-        }
-        Pageable pageable = PageRequest.of(pageIndex - 1, pageSize);
-        Page<SaleDetail> saleDetailsPage = this.saleDetailRepository.searchByColour(keyword, pageable);
-        if (saleDetailsPage.isEmpty()) {
-            throw new BadRequestServiceAlertException("no data found");
-        }
-        return saleDetailsPage;
     }
 }

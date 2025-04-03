@@ -1,12 +1,10 @@
 package com.showroommanagement.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Entity
-@Getter
-@Setter
+@Data
 @Table(name = "admin")
 public class Admin {
     @Id
@@ -17,6 +15,5 @@ public class Admin {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", unique = true)
-    private User user;
+    private Showroom showroom;
 }

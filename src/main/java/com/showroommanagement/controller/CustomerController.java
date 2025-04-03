@@ -48,11 +48,11 @@ public class CustomerController {
 
     @GetMapping("/customer/count")
     public ResponseDTO retrieveCustomerCount() {
-        return new ResponseDTO(HttpStatus.OK.value(), Constant.RETRIEVE,this.customerService.retrieveCustomerCount());
+        return new ResponseDTO(HttpStatus.OK.value(), Constant.RETRIEVE, this.customerService.retrieveCustomerCount());
     }
 
     @GetMapping("/customer/name")
     public ResponseDTO retrieveCustomerName() {
-        return new ResponseDTO(HttpStatus.OK.value(), Constant.RETRIEVE,this.customerService.retrieveCustomerName());
+        return new ResponseDTO(HttpStatus.OK.value(), Constant.RETRIEVE, this.customerService.retrieveCustomerName());
     }
 }

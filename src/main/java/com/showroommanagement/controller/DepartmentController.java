@@ -5,6 +5,7 @@ import com.showroommanagement.entity.Department;
 import com.showroommanagement.service.DepartmentService;
 import com.showroommanagement.util.Constant;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,6 +17,7 @@ public class DepartmentController {
         this.departmentService = departmentService;
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     @PostMapping("/department")
     public ResponseDTO createDepartment(@RequestBody final Department department) {
         return new ResponseDTO(HttpStatus.OK.value(), Constant.CREATE, this.departmentService.createDepartment(department));
@@ -31,11 +33,13 @@ public class DepartmentController {
         return new ResponseDTO(HttpStatus.OK.value(), Constant.RETRIEVE, this.departmentService.retrieveDepartment());
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     @PutMapping("/department/{id}")
     public ResponseDTO updateDepartmentById(@PathVariable final Integer id, @RequestBody final Department department) {
         return new ResponseDTO(HttpStatus.OK.value(), Constant.UPDATE, this.departmentService.updateDepartmentById(department, id));
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     @DeleteMapping("/department/{id}")
     public ResponseDTO removeDepartmentById(@PathVariable final Integer id) {
         return new ResponseDTO(HttpStatus.OK.value(), Constant.REMOVE, this.departmentService.removeDepartmentById(id));
