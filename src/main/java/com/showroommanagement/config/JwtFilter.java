@@ -1,7 +1,5 @@
 package com.showroommanagement.config;
 
-import com.showroommanagement.service.JWTService;
-import com.showroommanagement.service.MyUserDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

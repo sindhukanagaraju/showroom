@@ -5,7 +5,6 @@ import com.showroommanagement.entity.Brand;
 import com.showroommanagement.service.BrandService;
 import com.showroommanagement.util.Constant;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,9 +16,9 @@ public class BrandController {
         this.brandService = brandService;
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
     @PostMapping("/brand")
     public ResponseDTO createBrand(@RequestBody final Brand brand) {
+
         return new ResponseDTO(HttpStatus.OK.value(), Constant.CREATE, this.brandService.createBrand(brand));
     }
 
@@ -33,16 +32,11 @@ public class BrandController {
         return new ResponseDTO(HttpStatus.OK.value(), Constant.RETRIEVE, this.brandService.retrieveBrand());
     }
 
-<<<<<<< HEAD
-=======
-    @PreAuthorize("hasAnyAuthority(ADMIN')")
->>>>>>> 1bb0e5d (first commit)
     @PutMapping("/brand/{id}")
     public ResponseDTO updateBranch(@PathVariable final Integer id, @RequestBody final Brand brand) {
         return new ResponseDTO(HttpStatus.OK.value(), Constant.UPDATE, this.brandService.updateBrandById(brand, id));
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
     @DeleteMapping("/brand/{id}")
     public ResponseDTO removeBranchById(@PathVariable final Integer id) {
         return new ResponseDTO(HttpStatus.OK.value(), Constant.REMOVE, this.brandService.removeBrandById(id));

@@ -5,7 +5,6 @@ import com.showroommanagement.entity.Branch;
 import com.showroommanagement.service.BranchService;
 import com.showroommanagement.util.Constant;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,7 +17,6 @@ public class BranchController {
         this.branchService = branchService;
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
     @PostMapping("/branch")
     public ResponseDTO createBranch(@RequestBody final Branch branch) {
         return new ResponseDTO(HttpStatus.OK.value(), Constant.CREATE, this.branchService.createBranch(branch));
@@ -27,6 +25,7 @@ public class BranchController {
     @GetMapping("/branch/{id}")
     public ResponseDTO retrieveBranchById(@PathVariable final Integer id) {
         return new ResponseDTO(HttpStatus.OK.value(), Constant.RETRIEVE, this.branchService.retrieveBranchById(id));
+
     }
 
     @GetMapping("/branch")
@@ -34,16 +33,11 @@ public class BranchController {
         return new ResponseDTO(HttpStatus.OK.value(), Constant.RETRIEVE, this.branchService.retrieveBranch());
     }
 
-<<<<<<< HEAD
-=======
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
->>>>>>> 1bb0e5d (first commit)
     @PutMapping("/branch/{id}")
     public ResponseDTO updateBranch(@PathVariable final Integer id, @RequestBody final Branch branch) {
         return new ResponseDTO(HttpStatus.OK.value(), Constant.UPDATE, this.branchService.updateBranchById(branch, id));
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
     @DeleteMapping("/branch/{id}")
     public ResponseDTO removeBranchById(@PathVariable final Integer id) {
         return new ResponseDTO(HttpStatus.OK.value(), Constant.REMOVE, this.branchService.removeBranchById(id));
