@@ -52,4 +52,24 @@ public class SaleDetailController {
     public ResponseDTO retrieveSaleDetail(@RequestParam final String showroomName, @RequestParam final String productModel) {
         return new ResponseDTO(HttpStatus.OK.value(), Constant.RETRIEVE, this.saleDetailService.retrieveSaleDetail(showroomName, productModel));
     }
+
+    @GetMapping("/sale/page")
+    public ResponseDTO pagination(@RequestParam(defaultValue = "1") final int pageIndex, @RequestParam(defaultValue = "2") final int pageSize) {
+        return new ResponseDTO(HttpStatus.OK.value(), Constant.RETRIEVE, this.saleDetailService.pagination(pageIndex, pageSize));
+    }
+
+    @GetMapping("/sale/model/search")
+    public ResponseDTO findByModel(@RequestParam final String keyword) {
+        return new ResponseDTO(HttpStatus.OK.value(), Constant.RETRIEVE, this.saleDetailService.findByModel(keyword));
+    }
+
+    @GetMapping("/sale/detail/sort")
+    public ResponseDTO getPaginatedData(@RequestParam(defaultValue = "1") final int pageIndex, @RequestParam(defaultValue = "2") final int pageSize, @RequestParam(defaultValue = "2") final String sorting, @RequestParam(defaultValue = "true") final boolean direction) {
+        return new ResponseDTO(HttpStatus.OK.value(), Constant.RETRIEVE, this.saleDetailService.getPaginatedData(pageIndex, pageSize, sorting, direction));
+    }
+
+    @GetMapping("/sale/colour/search")
+    public ResponseDTO searchByColour(@RequestParam(defaultValue = "1") final int pageIndex, @RequestParam(defaultValue = "2") final int pageSize, @RequestParam final String keyword) {
+        return new ResponseDTO(HttpStatus.OK.value(), Constant.RETRIEVE, this.saleDetailService.searchByColour(pageIndex, pageSize, keyword));
+    }
 }
